@@ -113,6 +113,10 @@ const localShellTool: Tool = {
   type: "local_shell",
 };
 
+const webSearchTool: Tool = {
+  type: "web_search_preview",
+};
+
 export class AgentLoop {
   private model: string;
   private provider: string;
@@ -617,7 +621,7 @@ export class AgentLoop {
       // `disableResponseStorage === true`.
       let transcriptPrefixLen = 0;
 
-      let tools: Array<Tool> = [shellFunctionTool];
+      let tools: Array<Tool> = [shellFunctionTool, webSearchTool];
       if (this.model.startsWith("codex")) {
         tools = [localShellTool];
       }
