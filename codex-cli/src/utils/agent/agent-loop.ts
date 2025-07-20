@@ -117,6 +117,11 @@ const webSearchTool: Tool = {
   type: "web_search_preview",
 };
 
+const codeInterpreterTool: Tool = {
+  type: "code_interpreter",
+  container: { type: "auto" },
+};
+
 export class AgentLoop {
   private model: string;
   private provider: string;
@@ -621,7 +626,7 @@ export class AgentLoop {
       // `disableResponseStorage === true`.
       let transcriptPrefixLen = 0;
 
-      let tools: Array<Tool> = [shellFunctionTool, webSearchTool];
+      let tools: Array<Tool> = [shellFunctionTool, webSearchTool, codeInterpreterTool];
       if (this.model.startsWith("codex")) {
         tools = [localShellTool];
       }
